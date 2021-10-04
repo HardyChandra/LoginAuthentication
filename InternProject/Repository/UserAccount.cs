@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using InternProject.DatabaseModel;
-using InternProject.DataContext;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;

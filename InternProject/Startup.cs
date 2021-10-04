@@ -1,4 +1,4 @@
-using InternProject.DataContext;
+
 using InternProject.Repository;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -28,30 +28,26 @@ namespace InternProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-        
-
-            services.AddDbContext<InternProjectContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-            {
-                options.LoginPath = "/Account/Login";
-                options.Events = new CookieAuthenticationEvents()
-                {
-                    OnSigningIn = async context =>
-                    {
-                        await Task.CompletedTask;
-                    },
-                    OnSignedIn = async context =>
-                    {
-                        await Task.CompletedTask;
-                    },
-                    OnValidatePrincipal = async context =>
-                    {
-                        await Task.CompletedTask;
-                    }
-                };
-            });
+                 {
+                     options.LoginPath = "/Account/Login";
+                     options.Events = new CookieAuthenticationEvents()
+                     {
+                         OnSigningIn = async context =>
+                         {
+                             await Task.CompletedTask;
+                         },
+                         OnSignedIn = async context =>
+                         {
+                             await Task.CompletedTask;
+                         },
+                         OnValidatePrincipal = async context =>
+                         {
+                             await Task.CompletedTask;
+                         }
+                     };
+                 });
 
             services.AddScoped<IUserAccount, UserAccount>();
         }
