@@ -50,6 +50,7 @@ namespace InternProject.Controllers
 
                         return Redirect(returnUrl);
                     }
+                    TempData["Error"] = "Username or Password is invalid!";
                     return View();
                 }
                 TempData["Error"] = "Username or Password is invalid!";

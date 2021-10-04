@@ -22,7 +22,6 @@ namespace InternProject.Controllers
         }
 
         [Authorize]
-        [ValidateAntiForgeryToken]
         public IActionResult Secured()
         {
             return View();
