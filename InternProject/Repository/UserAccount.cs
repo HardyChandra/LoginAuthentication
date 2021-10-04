@@ -18,13 +18,6 @@ namespace InternProject.Repository
         {
             _db = new SqlConnection(configuration.GetConnectionString("SqlConnection"));
         }
-
-        public User CheckEmail(string Email)
-        {
-            var sql = @"SELECT * FROM UserAccount Where Email = @Email";
-
-            return _db.QueryFirstOrDefault<User>(sql, new { Email = Email });
-        }
         
         public User CheckUser(string Email, string Password)
         {
