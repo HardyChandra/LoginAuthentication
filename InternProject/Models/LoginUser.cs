@@ -8,10 +8,10 @@ namespace InternProject.Models
 {
     public class LoginUser
     {
-        [Required(ErrorMessage = "Please enter your Email address")]
+        [Required(ErrorMessage = "Please enter your email address")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Please enter your Password")]
+        [Required(ErrorMessage = "Please enter your password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
