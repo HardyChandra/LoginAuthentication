@@ -36,14 +36,15 @@ namespace InternProject.Controllers
                 var email = _userAccount.CheckEmail(user.Email);
                 if (email != null)
                 {
-                    var password = _userAccount.CheckPassword(user.Password);
+                    var userData = _userAccount.CheckUser(user.Email, user.Password);
 
-                    if(password != null)
+                    if(user != null)
                     {
                         var claims = new List<Claim>();
-                        claims.Add(new Claim("Username", user.Email));
-                        claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Email));
-                        claims.Add(new Claim(ClaimTypes.Name, password.Fullname));
+                        claims.Add(new Claim("Username", userData.Email));
+                        claims.Add(new Claim(ClaimTypes.NameIdentifier, userData.Email));
+                        claims.Add(new Claim(ClaimTypes.Name, userData.Fullname));
+                        claims.Add(new Claim(ClaimTypes.Role, userData.Role));
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                         var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                         await HttpContext.SignInAsync(claimsPrincipal);

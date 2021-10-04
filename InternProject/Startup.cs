@@ -32,6 +32,7 @@ namespace InternProject
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
                  {
                      options.LoginPath = "/Account/Login";
+                     options.AccessDeniedPath = "/Denied";
                      options.Events = new CookieAuthenticationEvents()
                      {
                          OnSigningIn = async context =>

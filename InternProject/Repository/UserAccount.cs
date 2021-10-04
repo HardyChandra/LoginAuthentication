@@ -26,11 +26,11 @@ namespace InternProject.Repository
             return _db.QueryFirstOrDefault<User>(sql, new { Email = Email });
         }
         
-        public User CheckPassword(string Password)
+        public User CheckUser(string Email, string Password)
         {
-            var sql = @"SELECT * FROM UserAccount WHERE Password = @Password";
+            var sql = @"SELECT * FROM UserAccount WHERE Email = @Email AND Password = @Password";
 
-            return _db.QueryFirstOrDefault<User>(sql, new { Password = Password });
+            return _db.QueryFirstOrDefault<User>(sql, new { Email = Email, Password = Password });
         }
     }
 }

@@ -21,8 +21,20 @@ namespace InternProject.Controllers
             return View();
         }
 
+        [HttpGet("Denied")]
+        public IActionResult Denied()
+        {
+            return View();
+        }
+
         [Authorize]
         public IActionResult Secured()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminMenu()
         {
             return View();
         }

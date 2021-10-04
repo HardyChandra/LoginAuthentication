@@ -9,7 +9,7 @@ namespace InternProject.Repository
     public interface IUserAccount
     {
         User CheckEmail(string Email);
-        User CheckPassword(string Password);
+        User CheckUser(string Email, string Password);
 
     }
 }
