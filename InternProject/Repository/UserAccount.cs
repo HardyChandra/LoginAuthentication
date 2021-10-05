@@ -23,14 +23,21 @@ namespace InternProject.Repository
         {
             var sql = @"INSERT INTO UserAccount (Fullname, Email, Password, Role) VALUES (@Fullname, @Email, @Password, @Role)";
 
-            return _db.Execute(sql, new { Fullname = Fullname, Email = Email, Password = Password, Role = "Member" });
+            return _db.Execute(sql, new { Fullname, Email, Password, Role = "Member" });
         }
-        
+
+        public User CheckEmail(string Email)
+        {
+            var sql = @"SELECT * FROM UserAccount WHERE Email = @Email";
+
+            return _db.QueryFirstOrDefault<User>(sql, new { Email });
+        }
+
         public User CheckUser(string Email, string Password)
         {
             var sql = @"SELECT * FROM UserAccount WHERE Email = @Email AND Password = @Password";
 
-            return _db.QueryFirstOrDefault<User>(sql, new { Email = Email, Password = Password });
+            return _db.QueryFirstOrDefault<User>(sql, new { Email, Password });
         }
     }
 }

@@ -32,15 +32,20 @@ namespace InternProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                _userAccount.CreateUser(user.Fullname, user.Email, user.Password);
+                var checkEmail = _userAccount.CheckEmail(user.Email);
+                if (checkEmail == null)
+                {
+                    _userAccount.CreateUser(user.Fullname, user.Email, user.Password);
 
-                return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
+                }
+
+                TempData["Error"] = "Email has been registered";
+                return View();
             }
 
             return View();
         }
-
-       
 
         public IActionResult Login(string returnUrl)
         {
