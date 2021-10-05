@@ -18,6 +18,13 @@ namespace InternProject.Repository
         {
             _db = new SqlConnection(configuration.GetConnectionString("SqlConnection"));
         }
+
+        public int CreateUser(string Fullname, string Email, string Password)
+        {
+            var sql = @"INSERT INTO UserAccount (Fullname, Email, Password, Role) VALUES (@Fullname, @Email, @Password, @Role)";
+
+            return _db.Execute(sql, new { Fullname = Fullname, Email = Email, Password = Password, Role = "Member" });
+        }
         
         public User CheckUser(string Email, string Password)
         {

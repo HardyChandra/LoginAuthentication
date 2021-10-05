@@ -8,6 +8,7 @@ namespace InternProject.Repository
 {
     public interface IUserAccount
     {
+        int CreateUser(string Fullname, string Email, string Password);
         User CheckUser(string Email, string Password);
     }
 }

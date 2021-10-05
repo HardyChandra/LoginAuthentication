@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,26 @@ namespace InternProject.Controllers
         {
             _userAccount = userAccount;
         }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(RegisterUser user)
+        {
+            if (ModelState.IsValid)
+            {
+                _userAccount.CreateUser(user.Fullname, user.Email, user.Password);
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View();
+        }
+
+       
 
         public IActionResult Login(string returnUrl)
         {
